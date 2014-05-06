@@ -1,0 +1,5 @@
+9 marbles, one is heavier than other 8 ones. Other 8 ones are equally heavy, how many times 
+to get the heavier one with a weighted balance?
+
+Divide them into 3 groups, we can get the heavier group.
+Than select two, we can determine the heavier one.

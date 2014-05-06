@@ -1,0 +1,77 @@
+http://en.wikipedia.org/wiki/Double-checked_locking
+
+// Single-threaded version
+class Foo {
+    private Helper helper;
+    public Helper getHelper() {
+        if (helper == null) {
+            helper = new Helper();
+        }
+        return helper;
+    }
+ 
+    // other functions and members...
+}
+
+// Correct but possibly expensive multithreaded version
+class Foo {
+    private Helper helper;
+    public synchronized Helper getHelper() {
+        if (helper == null) {
+            helper = new Helper();
+        }
+        return helper;
+    }
+ 
+    // other functions and members...
+}
+
+// Broken multithreaded version
+// "Double-Checked Locking" idiom
+class Foo {
+    private Helper helper;
+    public Helper getHelper() {
+        if (helper == null) {
+            synchronized(this) {
+                if (helper == null) {
+                    helper = new Helper();
+                }
+            }
+        }
+        return helper;
+    }
+ 
+    // other functions and members...
+}
+
+// Works with acquire/release semantics for volatile
+// Broken under Java 1.4 and earlier semantics for volatile
+class Foo {
+    private volatile Helper helper;
+    public Helper getHelper() {
+        Helper result = helper;
+        if (result == null) {
+            synchronized(this) {
+                result = helper;
+                if (result == null) {
+                    helper = result = new Helper();
+                }
+            }
+        }
+        return result;
+    }
+ 
+    // other functions and members...
+}
+
+// Correct lazy initialization in Java
+@ThreadSafe
+class Foo {
+    private static class HelperHolder {
+       public static Helper helper = new Helper();
+    }
+ 
+    public static Helper getHelper() {
+        return HelperHolder.helper;
+    }
+}

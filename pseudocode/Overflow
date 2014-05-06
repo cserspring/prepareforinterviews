@@ -1,0 +1,8 @@
+How to determine a + b is overflowed?
+  if (a + b < a) then it is overflowed
+
+How to determine a * b is overflowed?
+  c = a * b;
+  if (a != 0 && c / a != b) then it is overflowed
+  
+Be careful about (high + low) / 2, use (high - low) / 2 + low instead.

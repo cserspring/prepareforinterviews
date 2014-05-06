@@ -1,0 +1,40 @@
+Max heap is the heap whose root is largest
+Min heap is the heap whose root is smallest
+
+Find running median from a stream of integers?
+
+There are a number of different solutions for finding running median from streamed data, 
+I will briefly talk about them at the very end of the answer.
+
+The question is about the details of the a specific solution (max heap/min heap solution), 
+and how heap based solution works is explained below:
+
+For the first two elements add smaller one to the maxHeap on the left, and bigger one to the 
+minHeap on the right. Then process stream data one by one,
+
+Step 1: Add next item to one of the heaps
+
+   if next item is smaller than maxHeap root add it to maxHeap,
+   else add it to minHeap
+
+Step 2: Balance the heaps (after this step heaps will be either balanced or
+   one of them will contain 1 more item)
+
+   if number of elements in one of the heaps is greater than the other by
+   more than 1, remove the root element from the one containing more elements and
+   add to the other one
+Then at any given time you can calculate median like this:
+
+   If the heaps contain equal elements;
+     median = (root of maxHeap + root of minHeap)/2
+   Else
+     median = root of the heap with more elements
+Now I will talk about the problem in general as promised in the beginning of the question. 
+Finding running median from a stream of data is a tough problem, and finding an exact solution 
+with memory constraints efficiently is probably impossible for the general case. On the other 
+hand, if the data has some characteristics we can exploit, we can develop efficient specialized 
+solutions. For example, if we know that the data is an integral type, then we can use counting 
+sort, which can give you a constant memory constant time algorithm. Heap based solution is a 
+more general solution because it can be used for other data types (doubles) as well. And finally, 
+if the exact median is not required and an approximation is enough, you can just try to estimate 
+a probability density function for the data and estimate median using that.

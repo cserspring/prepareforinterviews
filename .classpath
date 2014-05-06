@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="leetcode"/>
+	<classpathentry kind="src" path="pseudocode"/>
+	<classpathentry kind="src" path="sortalgorithms"/>
+	<classpathentry kind="src" path="interview"/>
+	<classpathentry kind="src" path="brainteasers"/>
+	<classpathentry kind="src" path="concept"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

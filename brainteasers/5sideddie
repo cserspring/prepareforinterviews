@@ -1,0 +1,7 @@
+You have a 5-sided die. You need to produce a uniform random number between 1-7. You can re-roll the 
+die as much as you need. 
+How do you achieve this?
+
+Imagine a 5x5 bingo board (2D array). Mark 1-7 continuously across the squares, until the last 4 which 
+you will mark "0". 
+Roll the 5-sided die once to pick a column. Roll it again to pick a row. If it's a "0" start again.
