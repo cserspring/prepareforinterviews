@@ -1,5 +1,20 @@
 How to determine a + b is overflowed?
-  if (a + b < a) then it is overflowed
+
+  static final int safeAdd(int left, int right) {
+    if (right > 0 ? left > Integer.MAX_VALUE - right
+                  : left < Integer.MIN_VALUE - right) {
+      throw new ArithmeticException("Integer overflow");
+    }
+    return left + right;
+  }
+
+  static final int safeSubtract(int left, int right) {
+    if (right > 0 ? left < Integer.MIN_VALUE + right
+                  : left > Integer.MAX_VALUE + right) {
+      throw new ArithmeticException("Integer overflow");
+    }
+    return left - right;
+  }
 
 How to determine a * b is overflowed?
   c = a * b;
